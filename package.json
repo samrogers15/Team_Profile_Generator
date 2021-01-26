@@ -1,0 +1,30 @@
+{
+  "name": "Team_Profile_Generator",
+  "version": "1.0.0",
+  "description": "Repository for a Node.js command-line application that houses information about employees on a team and generates an HTML page displaying that info",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/samrogers15/Team_Profile_Generator.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/samrogers15/Team_Profile_Generator/issues"
+  },
+  "homepage": "https://github.com/samrogers15/Team_Profile_Generator#readme",
+  "dependencies": {
+    "inquirer": "^7.3.3"
+  },
+  "devDependencies": {
+    "jest": "^26.6.3"
+  }
+}
