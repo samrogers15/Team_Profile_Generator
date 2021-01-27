@@ -1,8 +1,7 @@
-// Write code to test the Employee class code to see if it works
+// Write code to test the Manager class code to see if it works
 
 const Manager = require('../lib/manager');
 const Employee = require('../lib/employee');
-const { expect } = require('@jest/globals');
 
 describe("Manager", () => {
     describe("initialization", () => {
