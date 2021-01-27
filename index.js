@@ -3,21 +3,17 @@ const Manager = require('./lib/manager');
 const Engineer = require ('./lib/engineer');
 const Intern = require('./lib/intern');
 const fs = require('fs');
-const inquire = require('inquirer');
 const path = require('path');
 const inquirer = require('inquirer');
 
-// build out original question for which team member you want to build, then .prompt of chosen team member's questions
-
 // need an initiator function
 
-const teamMembers = [];
-
 function startApp() {
-    beginBuildingTeam();
     buildTeamPage();
+    beginBuildingTeam();
 };
 
+const teamMembers = [];
 
 function beginBuildingTeam() {
     inquirer.prompt([
@@ -36,7 +32,7 @@ function beginBuildingTeam() {
             case 'Intern':
                 return addIntern();
             case 'Finished: Please build the team!':
-                buildTeamPage();
+                endHTML();
             default:
                 return beginBuildingTeam();
         };
@@ -68,7 +64,7 @@ function addManager() {
     ]).then ((response) => {
         const manager = new Manager(response.name, response.id, response.email, response.officeNumber);
         teamMembers.push(manager);
-        // call renderNewEmployee (newEmployee);
+        renderNewEmployees(manager);
         beginBuildingTeam();
     });
 };
@@ -98,7 +94,7 @@ function addEngineer() {
     ]).then((response) => {
         const engineer = new Engineer(response.name, response.id, response.email, response.gitHub);
         teamMembers.push(engineer);
-        // call renderNewEmployee (newEmployee);
+        renderNewEmployees(engineer);
         beginBuildingTeam();
     });
 };
@@ -128,7 +124,7 @@ function addIntern() {
     ]).then((response) => {
         const intern = new Intern(response.name, response.id, response.email, response.school);
         teamMembers.push(intern);
-        // call renderNewEmployee (newEmployee);
+        renderNewEmployees(intern);
         beginBuildingTeam();
     });
 };
@@ -143,6 +139,8 @@ function buildTeamPage() {
     <title>Team Profile</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
+    <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script defer src= "../index.js"></script>
     </head>
     <body>
     
@@ -151,26 +149,23 @@ function buildTeamPage() {
     </nav>
 
     <div class="container">
-        <div class="row manager">
-            <div class = "card" style="width: 25rem;"></div>
+        <div class="row">
+            <div class = "card manager" style="width: 25rem;"></div>
         </div>
-        <div class="row engineer">
-            <div class = "card" style="width: 25rem;"></div>
+        <div class="row">
+            <div class = "card engineer" style="width: 25rem;"></div>
         </div>
-        <div class="row intern">
-            <div class = "card" style="width: 25rem;"></div>
+        <div class="row">
+            <div class = "card intern" style="width: 25rem;"></div>
         </div>
     </div>
-
-    <script src= "../index.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     `;
     
-    fs.writeFile('./dist/team-page.html', html, 'utf-8', (err) => {
+    fs.writeFile('./dist/team-page.html', html, 'utf-8', function(error) {
         if (error) {
-        console.log('There is an error in the writeFile :', err);
+        console.log('There is an error in the writeFile :', error);
         }
-    });
+    })
 };
 
 function renderNewEmployees(newEmployee) {
@@ -183,51 +178,72 @@ function renderNewEmployees(newEmployee) {
         if(role === 'Manager') {
             const officeNumber = newEmployee.getOfficeNumber();
             card = `
-                <div class = "card" style="width: 25rem;">
-                    <div class = "card-body">
-                        <h2>Name: ${this.name}</h2>
-                        <h3>Role: ${this.role}</h3>
-                        <p>Id: ${this.id}</p>
-                        <p>Email: ${this.email}</p>
-                        <p>Office Number: ${this.officeNumber}</p>
-                    </div>
+                <div class = "card-body">
+                    <h2>Name: ${name}</h2>
+                    <h3>Role: ${role}</h3>
+                    <p>Id: ${id}</p>
+                    <p>Email: ${email}</p>
+                    <p>Office Number: ${officeNumber}</p>
                 </div>
-            `
+            `;
+            // document.getElementsByClassName('manager').appendChild(card)
         } else if (role === 'Engineer') {
             const gitHub = newEmployee.getGitHub();
-            card = `
-                <div class = "card" style="width: 25rem;">
-                    <div class = "card-body">
-                        <h2>Name: ${this.name}</h2>
-                        <h3>Role: ${this.role}</h3>
-                        <p>Id: ${this.id}</p>
-                        <p>Email: ${this.email}</p>
-                        <p>Office Number: ${this.gitHub}</p>
-                    </div>
+            card = `                    
+                <div class = "card-body">
+                    <h2>Name: ${name}</h2>
+                    <h3>Role: ${role}</h3>
+                    <p>Id: ${id}</p>
+                    <p>Email: ${email}</p>
+                    <p>Office Number: ${gitHub}</p>
                 </div>
-            `
+            `;
+            // document.getElementsByClassName('engineer').appendChild(card)
         } else {
             const school = newEmployee.getSchool();
             card = `
-                <div class = "card" style="width: 25rem;">
-                    <div class = "card-body">
-                        <h2>Name: ${this.name}</h2>
-                        <h3>Role: ${this.role}</h3>
-                        <p>Id: ${this.id}</p>
-                        <p>Email: ${this.email}</p>
-                        <p>Office Number: ${this.school}</p>
-                    </div>
+                <div class = "card-body">
+                    <h2>Name: ${name}</h2>
+                    <h3>Role: ${role}</h3>
+                    <p>Id: ${id}</p>
+                    <p>Email: ${email}</p>
+                    <p>Office Number: ${school}</p>
                 </div>
-            `
+            `;
+            // document.getElementsByClassName('intern').appendChild(card)
         }
+        fs.appendFile('./dist/team-page.html', card, function(error) {
+            if (error) {
+                return reject(error);
+            };
+            return resolve();
+        });
+    })  
+};
+
+function endHTML() {
+    const htmlEnd = `
+    </body>
+    </html>
+    `;
+    fs.appendFile('./dist/team-page.html', htmlEnd, function(error) {
+        if (error) {
+            console.log('There is an error in the endHTML function', error);
+        }
+    })
+};
+
+startApp();
+
+
+
         // establish global consts (name, id, email, role)
         // create a card let card = ''
         // create if statements so that if role = manager, then make the card the manager card with all of the information on itand add the const speciic to manager
         // else if role is engeineer, same thing,, with const that includes parameter specific to engineer
         // then append the file
         // then if error reject(error) return (resolve);
-    }
-};
+    
 
 // then end html function that add sin the final html tags
 
