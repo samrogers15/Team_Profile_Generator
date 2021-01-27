@@ -22,7 +22,8 @@ describe("Engineer", () => {
         })
 
         it("should throw an error if 'id' parameter is not a number", () => {
-            const cb = () => new Engineer("Viacheslav", "1003", "Viacheslav@unclesammy.com", "ViacheslavRedWingsGreat");            const err = new Error("Expected parameter 'id' to be a number");
+            const cb = () => new Engineer("Viacheslav", "1003", "Viacheslav@unclesammy.com", "ViacheslavRedWingsGreat");
+            const err = new Error("Expected parameter 'id' to be a number");
 
             expect(cb).toThrowError(err);
         })

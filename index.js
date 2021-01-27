@@ -6,6 +6,22 @@ const fs = require('fs');
 const inquire = require('inquirer');
 const path = require('path');
 const generateHTML = require('./src/generateHTML');
+const inquirer = require('inquirer');
+
+// build out original question for which team member you want to build, then .prompt of chosen team member's questions
+
+// need an initiator function
+
+function beginBuildingTeam() {
+    inquirer.prompt([
+        {
+            type: 'list',
+            name: 'additionalPerson',
+            message: "Would you like to add an additional Employee? If yes, select employee type. If no, select 'Exit'",
+            choices: ['Manager', 'Engineer', 'Intern', 'Exit']
+        },
+    ])
+}
 
 const additionalPersonQuestion =[
     {
@@ -84,3 +100,11 @@ const internQuestions = [
         message: 'What school does the intern go to?',
     },
 ]
+
+async function startApp() {
+    const answers = await inquirer.prompt(managerQuestions);
+    const managerHTML = new Manager.buildHTML(answers)
+}
+
+
+// I think I need some type of export so that I can write the file to HTML when taking in all of the information from the prompted questions
