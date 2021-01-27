@@ -11,7 +11,7 @@ describe("Employee", () => {
             expect(employee.id).toEqual(1001);
             expect(employee.email).toEqual("Frank@unclesammy.com");
         })
-    
+        
         it("should throw an error if 'name' parameter is not a string", () => {
             const cb = () => new Employee(25, 1001, "Frank@unclesammy.com");
             const err = new Error("Expected parameter 'name' to be a string");
@@ -56,6 +56,14 @@ describe("Employee", () => {
             const employee = new Employee("Frank", 1001, "Frank@unclesammy.com");
                       
             expect(employee.getEmail()).toBe("Frank@unclesammy.com");
+        })
+    })
+
+    describe("getRole", () => {
+        it("should return the 'role' parameter defined by the Employee class", () => {
+            const employee = new Employee("Frank", 1001, "Frank@unclesammy.com");
+                      
+            expect(employee.getRole()).toBe("Employee");
         })
     })
 });
