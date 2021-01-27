@@ -7,6 +7,15 @@ const inquire = require('inquirer');
 const path = require('path');
 const generateHTML = require('./src/generateHTML');
 
+const additionalPersonQuestion =[
+    {
+        type: 'list',
+        name: 'additionalPerson',
+        message: "Would you like to add an additional Employee? If yes, select employee type. If no, select 'Exit'",
+        choices: ['Manager', 'Engineer', 'Intern', 'Exit']
+    },
+]
+
 const managerQuestions = [
     {
         type: 'input',
