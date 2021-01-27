@@ -68,6 +68,14 @@ describe("Manager", () => {
         })
     })
 
+    describe("getOfficeNumber", () => {
+        it("should return the 'officeNumber' parameter passed into the Manager class", () => {
+            const manager = new Manager("Jim", 1002, "Jim@unclesammy.com", 1);
+                      
+            expect(manager.getOfficeNumber()).toBe(1);
+        })
+    })
+
     describe("getRole", () => {
         it("should return the 'role' parameter defined by the Manager class", () => {
             const manager = new Manager("Jim", 1002, "Jim@unclesammy.com", 1);

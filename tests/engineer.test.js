@@ -67,6 +67,14 @@ describe("Engineer", () => {
         })
     })
 
+    describe("getGitHub", () => {
+        it("should return the 'gitHub' parameter passed into the Engineer class", () => {
+            const engineer = new Engineer("Viacheslav", 1003, "Viacheslav@unclesammy.com", "ViacheslavRedWingsGreat");
+                      
+            expect(engineer.getGitHub()).toBe("ViacheslavRedWingsGreat");
+        })
+    })
+
     describe("getRole", () => {
         it("should return the 'role' parameter defined by the Engineer class", () => {
             const engineer = new Engineer("Viacheslav", 1003, "Viacheslav@unclesammy.com", "ViacheslavRedWingsGreat");
