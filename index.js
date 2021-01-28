@@ -135,6 +135,7 @@ function buildTeamPage() {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Team Profile</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <link rel="stylesheet" href="./style.css">
     <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -142,11 +143,12 @@ function buildTeamPage() {
     </head>
     <body>
     
-    <nav class="navbar navbar-dark bg-primary">
-        <span class="navbar-brand mb-0 h1">Team Org Chart</span>    
+    <nav class="navbar navbar-dark bg-primary" style="padding:10px">
+        <h1 class="navbar-text text-white mx-auto">Team Org Chart</h1>
     </nav>
 
-    <div class="container">
+    <div class="container mx-auto" style="margin: 10px">
+        <div class="row">
     `;
     
     fs.writeFile('./dist/team-page.html', html, 'utf-8', function(error) {
@@ -166,45 +168,48 @@ function renderNewEmployees(newEmployee) {
         if(role === 'Manager') {
             const officeNumber = newEmployee.getOfficeNumber();
             card = `
-            <div class="row">
-                <div class = "card engineer" style="width: 25rem;">
-                    <div class = "card-body">
-                        <h2>Name: ${name}</h2>
-                        <h3>Role: ${role}</h3>
-                        <p>Id: ${id}</p>
-                        <p>Email: ${email}</p>
-                        <p>Office Number: ${officeNumber}</p>
+            <div class="card mx-auto" style="margin: 5px;">
+                <div class = "card-border-info mb-3" style="width:18rem">
+                    <div class="card-header bg-primary mb-3 text-white">Name: ${name}
+                        <div>Role: ${role}  <i class="fas fa-mug-hot"></i></div>
                     </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Employee ID: ${id}</li>
+                        <li class="list-group-item">Email: ${email}</li>
+                        <li class="list-group-item">Office Number: ${officeNumber}</li>
+                    </ul>
                 </div>
             </div>
             `;
         } else if (role === 'Engineer') {
             const gitHub = newEmployee.getGitHub();
             card = `                    
-            <div class="row">
-                <div class = "card engineer" style="width: 25rem;">
-                    <div class = "card-body">
-                        <h2>Name: ${name}</h2>
-                        <h3>Role: ${role}</h3>
-                        <p>Id: ${id}</p>
-                        <p>Email: ${email}</p>
-                        <p>Office Number: ${gitHub}</p>
+            <div class="card mx-auto" style="margin: 5px;">
+                <div class = "card-border-info mb-3" style="width:18rem">
+                    <div class="card-header bg-primary mb-3 text-white">Name: ${name}
+                        <div>Role: ${role}  <i class="fas fa-glasses"></i></div>
                     </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Employee ID: ${id}</li>
+                        <li class="list-group-item">Email: ${email}</li>
+                        <li class="list-group-item">GitHub Account: ${gitHub}</li>
+                    </ul>
                 </div>
             </div>
             `;
         } else {
             const school = newEmployee.getSchool();
             card = `
-            <div class="row">
-                <div class = "card intern" style="width: 25rem;">
-                    <div class = "card-body">
-                        <h2>Name: ${name}</h2>
-                        <h3>Role: ${role}</h3>
-                        <p>Id: ${id}</p>
-                        <p>Email: ${email}</p>
-                        <p>Office Number: ${school}</p>
+            <div class="card mx-auto" style="margin: 5px;">
+                <div class = "card-border-info mb-3" style="width:18rem">
+                    <div class="card-header bg-primary mb-3 text-white">Name: ${name}
+                        <div>Role: ${role}  <i class="fas fa-user-graduate"></i></div>
                     </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Employee ID: ${id}</li>
+                        <li class="list-group-item">Email: ${email}</li>
+                        <li class="list-group-item">School: ${school}</li>
+                    </ul>
                 </div>
             </div>
             `;
@@ -220,6 +225,7 @@ function renderNewEmployees(newEmployee) {
 
 function endHTML() {
     const htmlEnd = `
+    </div>
     </div>
     </body>
     </html>
