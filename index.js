@@ -2,9 +2,9 @@ const Employee = require('./lib/employee');
 const Manager = require('./lib/manager');
 const Engineer = require ('./lib/engineer');
 const Intern = require('./lib/intern');
-const fs = require('fs');
 const path = require('path');
 const inquirer = require('inquirer');
+const fs = require('fs');
 
 // need an initiator function
 
@@ -33,6 +33,7 @@ function beginBuildingTeam() {
                 return addIntern();
             case 'Finished: Please build the team!':
                 endHTML();
+                return;
             default:
                 return beginBuildingTeam();
         };
@@ -138,7 +139,7 @@ function buildTeamPage() {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Team Profile</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./style.css">
     <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script defer src= "../index.js"></script>
     </head>
