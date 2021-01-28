@@ -6,8 +6,9 @@ const path = require('path');
 const inquirer = require('inquirer');
 const fs = require('fs');
 
+// need an initiator function
+
 function startApp() {
-    buildTeamPage();
     beginBuildingTeam();
 };
 
@@ -129,27 +130,46 @@ function addIntern() {
 };
 
 function buildTeamPage() {
+    // boilerplate code for overall page, then fswrite file that uses error handler, then function for generating cards for manager, engineer, and intern
     const html = `<!DOCTYPE html>
     <html lang="en">
     <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Team Profile</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-    <link rel="stylesheet" href="./style.css">
-    <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script defer src= "../index.js"></script>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Team Profile</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+        <link rel="stylesheet" href="./style.css">
+        <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script defer src= "../index.js"></script>
     </head>
     <body>
+        
+        <nav class="navbar navbar-dark bg-primary">
+            <span class="navbar-brand mb-0 h1">Team Org Chart</span>    
+        </nav>
     
-    <nav class="navbar navbar-dark bg-primary">
-        <span class="navbar-brand mb-0 h1">Team Org Chart</span>    
-    </nav>
-
-    <div class="container">
+        <div class="container">
+            <div class="row">
+                <div class = "card manager" style="width: 25rem;">
+                    <iframe src="./manager.html"></iframe>
+                </div>
+            </div>
+            <div class="row">
+                <div class = "card engineer" style="width: 25rem;">
+                    <iframe src="./engineer.html"></iframe>
+                </div>
+            </div>
+            <div class="row">
+                <div class = "card intern" style="width: 25rem;">
+                    <iframe src="./intern.html"></iframe>
+                </div>
+            </div>
+        </div>
+    </body>
+    </html>
     `;
     
-    fs.writeFile('./dist/team-page.html', html, 'utf-8', function(error) {
+    fs.writeFile('./dist/team-page-copy.html', html, 'utf-8', function(error) {
         if (error) {
         console.log('There is an error in the writeFile :', error);
         }
@@ -166,84 +186,60 @@ function renderNewEmployees(newEmployee) {
         if(role === 'Manager') {
             const officeNumber = newEmployee.getOfficeNumber();
             card = `
-            <div class="row">
-                <div class = "card engineer" style="width: 25rem;">
-                    <div class = "card-body">
-                        <h2>Name: ${name}</h2>
-                        <h3>Role: ${role}</h3>
-                        <p>Id: ${id}</p>
-                        <p>Email: ${email}</p>
-                        <p>Office Number: ${officeNumber}</p>
-                    </div>
+                <div class = "card-body">
+                    <h2>Name: ${name}</h2>
+                    <h3>Role: ${role}</h3>
+                    <p>Id: ${id}</p>
+                    <p>Email: ${email}</p>
+                    <p>Office Number: ${officeNumber}</p>
                 </div>
-            </div>
             `;
+            fs.appendFile('./dist/manager.html', card, function(error) {
+                if (error) {
+                    return reject(error);
+                };
+                return resolve();
+            });
         } else if (role === 'Engineer') {
             const gitHub = newEmployee.getGitHub();
             card = `                    
-            <div class="row">
-                <div class = "card engineer" style="width: 25rem;">
-                    <div class = "card-body">
-                        <h2>Name: ${name}</h2>
-                        <h3>Role: ${role}</h3>
-                        <p>Id: ${id}</p>
-                        <p>Email: ${email}</p>
-                        <p>Office Number: ${gitHub}</p>
-                    </div>
+                <div class = "card-body">
+                    <h2 class = "card-title">Name: ${name}</h2>
+                    <h3 class = "card-subtitle">Role: ${role}</h3>
+                    <p class = "card-text">Id: ${id}</p>
+                    <p class = "card-text">Email: ${email}</p>
+                    <p class = "card-text">Office Number: ${gitHub}</p>
                 </div>
-            </div>
             `;
+            fs.appendFile('./dist/engineer.html', card, function(error) {
+                if (error) {
+                    return reject(error);
+                };
+                return resolve();
+            });
         } else {
             const school = newEmployee.getSchool();
             card = `
-            <div class="row">
-                <div class = "card intern" style="width: 25rem;">
-                    <div class = "card-body">
-                        <h2>Name: ${name}</h2>
-                        <h3>Role: ${role}</h3>
-                        <p>Id: ${id}</p>
-                        <p>Email: ${email}</p>
-                        <p>Office Number: ${school}</p>
-                    </div>
+                <div class = "card-body">
+                    <h2>Name: ${name}</h2>
+                    <h3>Role: ${role}</h3>
+                    <p>Id: ${id}</p>
+                    <p>Email: ${email}</p>
+                    <p>Office Number: ${school}</p>
                 </div>
-            </div>
             `;
-        }
-        fs.appendFile('./dist/team-page.html', card, function(error) {
-            if (error) {
-                return reject(error);
-            };
-            return resolve();
-        });
-    })  
+            fs.appendFile('./dist/intern.html', card, function(error) {
+                if (error) {
+                    return reject(error);
+                };
+                return resolve();
+            });
+        };
+    });
 };
 
 function endHTML() {
-    const htmlEnd = `
-    </div>
-    </body>
-    </html>
-    `;
-    fs.appendFile('./dist/team-page.html', htmlEnd, function(error) {
-        if (error) {
-            console.log('There is an error in the endHTML function', error);
-        }
-    })
+    buildTeamPage();
 };
 
 startApp();
-
-
-
-// establish global consts (name, id, email, role)
-// create a card let card = ''
-// create if statements so that if role = manager, then make the card the manager card with all of the information on itand add the const speciic to manager
-// else if role is engeineer, same thing,, with const that includes parameter specific to engineer
-// then append the file
-// then if error reject(error) return (resolve);
-
-
-// then end html function that add sin the final html tags
-
-
-// initiate the start(App) function
