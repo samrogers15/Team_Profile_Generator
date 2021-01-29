@@ -6,7 +6,7 @@
 * [General info](#general-info)
 * [Video link](#video-link)
 * [Technologies](#technologies)
-* [Live link](#live-link)
+* [Example HTML](#example-html)
 * [Sources](#sources)
 * [Contact](#contact)
 
@@ -19,7 +19,7 @@ SO THAT I have quick access to their emails and GitHub profiles
 This application contains classes for each of the individual employees as well as NPM jest tests that ensure that the code written for each of these classes runs correctly. All of the code written for the command line application is in the index.js file and once the program is finished, an HTML page entitled "team-page.html" is automatically generated in the "dist" folder.
 
 ## Video link
-![Video Example]()
+![Video Example](https://drive.google.com/file/d/1F6JggdE7yGNvNqi9yV6oVVqkQMDo2ufv/view)
 
 ## Technologies
 * HTML
@@ -29,8 +29,8 @@ This application contains classes for each of the individual employees as well a
 * NPM Inquirer
 * NPM Jest
 
-## Live link
-Click here to see the [example HTML page]() in action!
+## Example HTML
+Click here to see the [example HTML page](https://docs.google.com/document/d/1UqUQVvoaSJ42pN3WUAYGAci6d6qfzkJ9bU9O16Oj1V0/edit?usp=sharing) in action!
 
 ## Sources
 Application enabled using the following sources:
