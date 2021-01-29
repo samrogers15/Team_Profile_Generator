@@ -11,7 +11,7 @@ function startApp() {
     beginBuildingTeam();
 };
 
-const teamMembers = [];
+// const teamMembers = [];
 
 function beginBuildingTeam() {
     inquirer.prompt([
@@ -62,7 +62,7 @@ function addManager() {
         },
     ]).then ((response) => {
         const manager = new Manager(response.name, response.id, response.email, response.officeNumber);
-        teamMembers.push(manager);
+        // teamMembers.push(manager);
         renderNewEmployees(manager);
         beginBuildingTeam();
     });
@@ -92,7 +92,7 @@ function addEngineer() {
         },
     ]).then((response) => {
         const engineer = new Engineer(response.name, response.id, response.email, response.gitHub);
-        teamMembers.push(engineer);
+        // teamMembers.push(engineer);
         renderNewEmployees(engineer);
         beginBuildingTeam();
     });
@@ -122,7 +122,7 @@ function addIntern() {
         },  
     ]).then((response) => {
         const intern = new Intern(response.name, response.id, response.email, response.school);
-        teamMembers.push(intern);
+        // teamMembers.push(intern);
         renderNewEmployees(intern);
         beginBuildingTeam();
     });
@@ -238,8 +238,6 @@ function endHTML() {
 };
 
 startApp();
-
-
 
 // establish global consts (name, id, email, role)
 // create a card let card = ''
