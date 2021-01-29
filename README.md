@@ -19,7 +19,7 @@ SO THAT I have quick access to their emails and GitHub profiles
 This application contains classes for each of the individual employees as well as NPM jest tests that ensure that the code written for each of these classes runs correctly. All of the code written for the command line application is in the index.js file and once the program is finished, an HTML page entitled "team-page.html" is automatically generated in the "dist" folder.
 
 ## Video link
-![Video Example](https://drive.google.com/file/d/1F6JggdE7yGNvNqi9yV6oVVqkQMDo2ufv/view)
+[Video Example](https://drive.google.com/file/d/1F6JggdE7yGNvNqi9yV6oVVqkQMDo2ufv/view)
 
 ## Technologies
 * HTML
