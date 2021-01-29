@@ -30,7 +30,7 @@ This application contains classes for each of the individual employees as well a
 * NPM Jest
 
 ## Example HTML
-Click here to see the [example HTML page](https://docs.google.com/document/d/1UqUQVvoaSJ42pN3WUAYGAci6d6qfzkJ9bU9O16Oj1V0/edit?usp=sharing) in action!
+Click here to see the code for the [example HTML page](https://docs.google.com/document/d/1UqUQVvoaSJ42pN3WUAYGAci6d6qfzkJ9bU9O16Oj1V0/edit?usp=sharing).
 
 ## Sources
 Application enabled using the following sources:
