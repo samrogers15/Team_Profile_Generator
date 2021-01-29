@@ -1,10 +1,10 @@
 # Team_Profile_Generator
-> TBD
+> This is a command line application that allows a user to input specific information about a team of employees. When the code is initialized, the user is prompted to select whether they want to add a manager, an engineer, or an intern and is asked specific questions about the employee type they have requested to add. After the questions are answered, the user is prompted to select whether they want to add another employee or to finish the program. When the program is finished, an HTML file that houses the team's org chart is generated.
  
 ## Table of contents
 * [User story](#user-story)
 * [General info](#general-info)
-* [Screenshots](#screenshots)
+* [Video link](#video-link)
 * [Technologies](#technologies)
 * [Live link](#live-link)
 * [Sources](#sources)
@@ -16,19 +16,21 @@ I WANT to generate a webpage that displays my team's basic info
 SO THAT I have quick access to their emails and GitHub profiles
 
 ## General info
-TBD
+This application contains classes for each of the individual employees as well as NPM jest tests that ensure that the code written for each of these classes runs correctly. All of the code written for the command line application is in the index.js file and once the program is finished, an HTML page entitled "team-page.html" is automatically generated in the "dist" folder.
 
-## Screenshots
-![TBD]()
+## Video link
+![Video Example]()
 
 ## Technologies
 * HTML
 * CSS
 * JQuery
-* AJAX
+* Node
+* NPM Inquirer
+* NPM Jest
 
 ## Live link
-Click here to see the [TBD]() in action!
+Click here to see the [example HTML page]() in action!
 
 ## Sources
 Application enabled using the following sources:
