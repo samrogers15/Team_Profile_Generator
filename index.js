@@ -238,16 +238,3 @@ function endHTML() {
 };
 
 startApp();
-
-// establish global consts (name, id, email, role)
-// create a card let card = ''
-// create if statements so that if role = manager, then make the card the manager card with all of the information on itand add the const speciic to manager
-// else if role is engeineer, same thing,, with const that includes parameter specific to engineer
-// then append the file
-// then if error reject(error) return (resolve);
-
-
-// then end html function that add sin the final html tags
-
-
-// initiate the start(App) function
